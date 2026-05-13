@@ -1,0 +1,35 @@
+require('dotenv').config();
+
+const express = require('express');
+const cors = require('cors');
+const sequelize = require('./config/database');
+const authRoutes = require('./routes/authRoutes');
+const usuarioRoutes = require('./routes/userRoutes');
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.get('/api', (req, res) => {
+  res.json({
+    message: 'API corriendo'
+  });
+});
+
+app.use('/api/auth', authRoutes);
+app.use('/api/usuarios', usuarioRoutes);
+
+const PORT = process.env.PORT || 3000;
+
+sequelize
+  .sync()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Servidor corriendo en puerto ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Error al iniciar el servidor:', err);
+    process.exit(1);
+  });
