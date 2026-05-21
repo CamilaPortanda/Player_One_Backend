@@ -13,18 +13,21 @@ router.get('/perfil', verificarToken, async (req, res) => {
   res.json(usuario);
 });
 
-router.get('/bestscore', verificarToken, async (req, res) => {
+router.get('/bestscores', verificarToken, async (req, res) => {
   try {
-    const resultado = await sequelize.query(
-      'SELECT MAX(score) as best_score FROM attempts WHERE user_id = :userId',
+    const resultados = await sequelize.query(
+      `SELECT minigame_id, MAX(score) as best_score 
+       FROM attempts 
+       WHERE user_id = :userId 
+       GROUP BY minigame_id`,
       {
         replacements: { userId: req.usuario.user_id },
         type: sequelize.QueryTypes.SELECT
       }
     );
-    res.json({ best_score: resultado[0].best_score });
+    res.json(resultados);
   } catch (err) {
-    res.status(500).json({ error: 'Error al obtener best score' });
+    res.status(500).json({ error: 'Error al obtener scores' });
   }
 });
 
