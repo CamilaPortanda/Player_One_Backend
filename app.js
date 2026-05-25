@@ -5,6 +5,7 @@ const cors = require('cors');
 const sequelize = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
 const usuarioRoutes = require('./routes/userRoutes');
+const profilePictureRoutes = require('./routes/profilePictureRoutes');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.get('/api', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/usuarios', usuarioRoutes);
+app.use('/api/pfps', profilePictureRoutes);
 
 const PORT = process.env.PORT || 3000;
 
