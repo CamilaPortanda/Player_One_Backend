@@ -121,6 +121,8 @@ Player_One_Backend/
 | POST | /api/auth/registro | Registrar un nuevo usuario |
 | POST | /api/auth/login | Iniciar sesión |
 | GET | /api/usuarios/perfil | Obtener perfil del usuario autenticado |
+| GET | /api/pfps | Obtener todas las PFPs disponibles |
+| PUT | /api/pfps/update-user-pfp | Actualizar la PFP del usuario autenticado |
 
 ---
 
@@ -132,9 +134,9 @@ Player_One_Backend/
 
 ```json
 {
-  "first_name": "Valeria",
-  "last_name": "Rosado",
-  "email": "valeria@test.com",
+  "first_name": "Nombre",
+  "last_name": "Apellido",
+  "email": "email@test.com",
   "password": "123456",
   "phone": "8112345678",
   "industry": "Tecnologia",
@@ -153,12 +155,21 @@ Player_One_Backend/
 
 ```json
 {
-  "email": "valeria@test.com",
+  "email": "email@test.com",
   "password": "123456"
 }
 ```
 
 ---
+
+## Profile Picture Update
+### PUT `/api/pfps/update-user-pfp`
+```json
+{
+  "user_id": 1,
+  "pfp_id": 2
+}
+```
 
 # Autenticación JWT
 
@@ -208,6 +219,12 @@ POST http://localhost:2000/api/auth/login
 GET http://localhost:2000/api/usuarios/perfil
 ```
 
+## Profile Pictures
+
+```txt
+GET http://localhost:2000/api/pfps
+PUT http://localhost:2000/api/pfps/update-user-pfp
+```
 ---
 
 # Notas importantes

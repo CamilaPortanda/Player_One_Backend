@@ -83,6 +83,13 @@ const User = sequelize.define(
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true
+    },
+    pfp_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'profile_picture',
+            key: 'pfp_id'
+        }
     }
   },
   {
