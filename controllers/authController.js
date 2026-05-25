@@ -14,7 +14,8 @@ exports.registro = async (req, res) => {
     company,
     job_position,
     country,
-    user_type_id
+    user_type_id,
+    pfp_id
   } = req.body;
 
   try {
@@ -31,7 +32,8 @@ exports.registro = async (req, res) => {
       company,
       job_position,
       country,
-      user_type_id
+      user_type_id,
+      pfp_id
     });
 
     res.status(201).json({
