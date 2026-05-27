@@ -6,11 +6,13 @@ const sequelize = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
 const usuarioRoutes = require('./routes/userRoutes');
 const profilePictureRoutes = require('./routes/profilePictureRoutes');
+const productRoutes = require('./routes/productRoutes');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use('/api/products', productRoutes);
 
 app.get('/api', (req, res) => {
   res.json({

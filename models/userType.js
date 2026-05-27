@@ -18,6 +18,11 @@ const UserType = sequelize.define('UserType', {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false
+    },
+    edit_products: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     }
 
 }, {
