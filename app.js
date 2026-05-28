@@ -7,8 +7,11 @@ const authRoutes = require('./routes/authRoutes');
 const usuarioRoutes = require('./routes/userRoutes');
 const profilePictureRoutes = require('./routes/profilePictureRoutes');
 const productRoutes = require('./routes/productRoutes');
-
+const industryRoutes = require('./routes/industryRoutes');
 const app = express();
+
+
+
 
 app.use(cors());
 app.use(express.json());
@@ -23,6 +26,7 @@ app.get('/api', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/pfps', profilePictureRoutes);
+app.use('/api/industries', industryRoutes);
 
 const PORT = process.env.PORT || 3000;
 
