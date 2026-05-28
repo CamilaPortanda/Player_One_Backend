@@ -60,10 +60,13 @@ const User = sequelize.define(
         allowNull: false,
         validate: { notEmpty: true }
     },
-    industry: {
-        type: DataTypes.STRING(50),
+    industry_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-        validate: { notEmpty: true }
+        references: {
+            model: 'industries',
+            key: 'industry_id'
+        }
     },
     job_position: {
         type: DataTypes.STRING(50),
