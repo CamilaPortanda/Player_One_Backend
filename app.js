@@ -8,6 +8,7 @@ const usuarioRoutes = require('./routes/userRoutes');
 const profilePictureRoutes = require('./routes/profilePictureRoutes');
 const productRoutes = require('./routes/productRoutes');
 const industryRoutes = require('./routes/industryRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes')
 const app = express();
 
 
@@ -27,6 +28,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/pfps', profilePictureRoutes);
 app.use('/api/industries', industryRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 const PORT = process.env.PORT || 3000;
 
