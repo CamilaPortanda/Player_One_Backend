@@ -77,6 +77,51 @@ exports.postAttempt = async (req, res) => {
     }
 };
 
+exports.createInteractionEvent = async (req, res) => {
+    try {
+        const userId = req.usuario.user_id;
+
+        const {
+            eventTypeId,
+            productId,
+            minigameId,
+            source
+        } = req.body;
+
+        await sequelize.query(
+            `
+            CALL create_interaction_event(
+                :userId,
+                :eventTypeId,
+                :productId,
+                :minigameId,
+                :source
+            )
+            `,
+            {
+                replacements: {
+                    userId,
+                    eventTypeId,
+                    productId,
+                    minigameId,
+                    source
+                }
+            }
+        );
+
+        res.json({
+            success: true
+        });
+    }
+    catch (err) {
+        console.error(err);
+
+        res.status(500).json({
+            error: 'Error creating interaction event'
+        });
+    }
+};
+
 /* // unused version
 exports.getPlayerData = async (req, res) => {
     try {

@@ -5,5 +5,6 @@ const verificarToken = require('../middleware/verificarToken');
 
 router.get('/get-player-data', verificarToken, gameController.getPlayerData);
 router.post('/post-attempt', verificarToken, gameController.postAttempt);
+router.post('/interaction-event', verificarToken, gameController.createInteractionEvent);
 
 module.exports = router;
