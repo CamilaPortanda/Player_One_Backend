@@ -9,6 +9,7 @@ const profilePictureRoutes = require('./routes/profilePictureRoutes');
 const productRoutes = require('./routes/productRoutes');
 const industryRoutes = require('./routes/industryRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes')
+const eventRoutes = require('./routes/eventRoutes')
 const gameRoutes = require('./routes/gameRoutes');
 const app = express();
 
@@ -30,6 +31,7 @@ app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/pfps', profilePictureRoutes);
 app.use('/api/industries', industryRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/events', eventRoutes);
 app.use('/api/game', gameRoutes);
 
 const PORT = process.env.PORT || 3000;
