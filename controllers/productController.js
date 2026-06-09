@@ -28,3 +28,15 @@ exports.updateProduct = async (req, res) => {
     res.status(500).json({ error: 'Error updating product' });
   }
 };
+
+exports.createProduct = async (req, res) => {
+  const { name_product, desc_product, html_link, image_link } = req.body
+  try {
+    if (!name_product) return res.status(400).json({ error: 'Name is required' })
+    const product = await Product.create({ name_product, desc_product, html_link, image_link })
+    res.status(201).json(product)
+  } catch (err) {
+    console.log('CREATE PRODUCT ERROR:', err.message) // ← cambia esto
+    res.status(500).json({ error: err.message }) // ← y esto
+  }
+}
