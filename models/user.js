@@ -106,6 +106,11 @@ User.associate = (models) => {
             foreignKey: "user_type_id",
             as: "userType"
         });
+
+        User.belongsTo(models.Industry, {
+            foreignKey: "industry_id",
+            as: "industry"
+        });
     };
 
 module.exports = User;
