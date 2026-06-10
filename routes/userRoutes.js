@@ -1,15 +1,33 @@
 const router = require('express').Router();
 const User = require('../models/user');
+const Industry = require('../models/industries');
 const verificarToken = require('../middleware/verificarToken');
 const sequelize = require('../config/database');
 
 router.get('/perfil', verificarToken, async (req, res) => {
+  console.log(User.associations);
   const usuario = await User.findByPk(req.usuario.user_id, {
-    attributes: ['user_id', 'first_name', 'last_name', 'email', 'phone', 'industry_id', 'company', 'job_position','pfp_id']
+    attributes: [
+      'user_id',
+      'first_name',
+      'last_name',
+      'email',
+      'phone',
+      'industry_id',
+      'company',
+      'job_position',
+      'pfp_id'
+    ]
   });
   if (!usuario) {
     return res.status(404).json({ error: 'Usuario no encontrado' });
   }
+  const industria = await Industry.findByPk(usuario.industry_id);
+
+  res.json({
+    ...usuario.toJSON(),
+    industry: industria
+  });
   res.json(usuario);
 });
 
